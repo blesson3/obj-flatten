@@ -138,3 +138,34 @@ test('arrays', function (t) {
 
   t.end();
 })
+
+test('flatten array', function (t) {
+  t.deepEqual(flatten({
+    name: {
+      first: 'Johnny',
+      last: 'B.',
+    },
+    phones: [{
+      label: { name: 'work' },
+      areaCode: '776',
+      number: '6639283'
+    }, {
+      label: { name: 'home' },
+      areaCode: '776',
+      number: '6839405'
+    }]
+    , age: 20
+  }, '.', true), {
+      'name.first': 'Johnny',
+      'name.last': 'B.',
+      age: 20,
+      'phones.0.label.name': 'work',
+      'phones.0.areaCode': '776',
+      'phones.0.number': '6639283',
+      'phones.1.label.name': 'home',
+      'phones.1.areaCode': '776',
+      'phones.1.number': '6839405'
+    }, 'double array');
+
+  t.end();
+})
