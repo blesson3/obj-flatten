@@ -169,3 +169,18 @@ test('flatten array', function (t) {
 
   t.end();
 })
+
+test('with empty array value', function (t) {
+  t.deepEqual(flatten({
+    key1: 'value',
+    key2: null,
+    key3: [],
+  }, '.', true), {
+      key1: 'value',
+      key2: null,
+      key3: [],
+    });
+
+  t.end();
+})
+
